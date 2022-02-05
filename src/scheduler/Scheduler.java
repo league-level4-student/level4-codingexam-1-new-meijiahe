@@ -1,5 +1,7 @@
 package scheduler;
 
+import java.awt.List;
+
 /*
  * Objective: Create a weekly scheduling application.
  * 
@@ -8,7 +10,7 @@ package scheduler;
  * 
  * - You should use an array filled with enums for the days of the week and each
  *   enum should contain a LinkedList of events that includes a time and what is 
- *   happening at the event.
+ *   happening at the event. 
  * 
  * - The user should be able to to interact with your application through the
  *   console and have the option to add events, view events or remove events by
@@ -24,8 +26,17 @@ package scheduler;
  *   variables.
  */
 public class Scheduler {
+	
+	enum Days {
+	Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
 
-    public static void main(String[] args) {
-
-    }
+	
 }
+    public static void main(String[] args) {
+    Days [] week = {Days.Monday, Days.Tuesday, Days.Wednesday, Days.Thursday, Days.Friday, Days.Saturday, Days.Sunday};
+    
+    }
+    
+    
+}
+
