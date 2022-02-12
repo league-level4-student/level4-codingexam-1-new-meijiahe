@@ -1,6 +1,6 @@
 package scheduler;
 
-import java.awt.List;
+import javax.swing.JOptionPane;
 
 /*
  * Objective: Create a weekly scheduling application.
@@ -28,15 +28,41 @@ import java.awt.List;
 public class Scheduler {
 	
 	enum Days {
-	Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
+	Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday;
 
-	
 }
-    public static void main(String[] args) {
-    Days [] week = {Days.Monday, Days.Tuesday, Days.Wednesday, Days.Thursday, Days.Friday, Days.Saturday, Days.Sunday};
+
+	 Days [] week = {Days.Monday, Days.Tuesday, Days.Wednesday, Days.Thursday, Days.Friday, Days.Saturday, Days.Sunday};
+   
+	 public static void main(String[] args) {
+ 
+    JOptionPane.showMessageDialog(null, "Which day you want to schedule an event?");
     
+    String sch = JOptionPane.showInputDialog(null);
+    if(sch == "Monday") {
+    	Event.MONDAY.getEvts().add(new SingleEvent(1, "sjsk"));
+    }
+    //if(sch == "Tuesday") {
+    //	Event.TUESDAY.getEvts().add();
+  //  }
+    
+    }
+    
+   
+    
+   void sort(Days [] week) {
+		for(int i = 0; i < week.length; i++) {
+			for(int j = i + 1; j < week.length; j++) {
+				if(week[i].equals(week[j])) {
+					Days t = week[i];
+					week[i] = week[j];
+					week[j] = t;
+				}
+			}
     }
     
     
 }
+}
+
 
