@@ -30,8 +30,8 @@ public class Scheduler {
 	static Day[] week = { Day.MONDAY, Day.TUESDAY, Day.WEDNESDAY, Day.THURSDAY, Day.FRIDAY, Day.SATURDAY, Day.SUNDAY };
 
 	public static void main(String[] args) {
-		for (int i = 0; i < 5; i++) {
-			String[] actions = new String[] { "Add", "Remove", "View" };
+		while (true) {
+			String[] actions = new String[] { "Add", "Remove", "View", "Quit" };
 //input dialog can display a message//
 			int chosenAction = JOptionPane.showOptionDialog(null, "What action do you want to do?", null,
 					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, actions, actions[0]);
@@ -46,6 +46,9 @@ public class Scheduler {
 			if (chosenAction == 2) { // to view events//
 				viewEvents();
 			}
+			if (chosenAction == 3) {
+				System.exit(0);
+			}
 		}
 
 	}
@@ -58,8 +61,14 @@ public class Scheduler {
 		String time = JOptionPane.showInputDialog("What is the time you want?");
 	//	int time = Integer.parseInt(timestring);//
 		String eventinfo = JOptionPane.showInputDialog("what is the event info?");
-		Event ev = new Event(time, eventinfo); // create an event object, now let particular day to add event//
-		week[day].addEvent(ev); // now we add one event to day//
+		Event ev = new Event(time, eventinfo); // create an event object, now let particular day to add event// / now we add one event to day//
+		try {
+			week[day].addEvent(ev);
+		} catch (SchedulingConflictException e) {
+			// TODO Auto-generated catch block
+		//	e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Hey, there is already an event at that time. Please reschedule.");
+		} 
 
 	}
 
@@ -88,16 +97,5 @@ public class Scheduler {
 		
 	}
 
-	void sort(Day[] week) {
-		for (int i = 0; i < week.length; i++) {
-			for (int j = i + 1; j < week.length; j++) {
-				if (week[i].equals(week[j])) {
-					Day t = week[i];
-					week[i] = week[j];
-					week[j] = t;
-				}
-			}
-		}
-
-	}
+	
 }
